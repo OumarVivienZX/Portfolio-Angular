@@ -28,7 +28,7 @@ def sync_portfolio_with_admin_choices(apps, schema_editor):
         nom_entreprise="IFLYSIM",
         defaults={
             "date_debut": timezone.datetime(2025, 6, 15).date(),
-            "date_fin": timezone.datetime(2025, 9, 31).date(),
+            "date_fin": timezone.datetime(2025, 9, 25).date(),
             "type_de_contrat": "Web development",
             "description": (
                 "Worked as a web developer at IFLYSIM, building web pages and creating "
