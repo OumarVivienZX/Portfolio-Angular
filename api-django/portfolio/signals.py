@@ -1,14 +1,16 @@
 """
-Signal pour envoyer un email à koumarvivien@gmail.com lors d'un nouveau message de contact.
+Signal pour envoyer un email lors d'un nouveau message de contact.
 """
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.core.mail import send_mail
 from django.conf import settings
+import os
 
 from .models import PriseDeContact
 
-EMAIL_DESTINATAIRE = 'koumarvivien@gmail.com'
+# Email destinataire configurable via variable d'environnement
+EMAIL_DESTINATAIRE = os.environ.get('EMAIL_DESTINATAIRE', 'koumarvivien@gmail.com')
 
 
 @receiver(post_save, sender=PriseDeContact)
