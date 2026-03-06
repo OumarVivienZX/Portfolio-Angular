@@ -128,6 +128,19 @@ et met à jour l'interface via une `signal`.
 - Le **frontend** est déployé sur Netlify (site statique).
 - Le **backend Django** doit être déployé ailleurs (Render / Railway / Fly.io / VPS, etc.).
 
+### Config Netlify (important)
+
+Angular (builder `@angular/build:application`) publie le site dans :
+
+- `dist/portfolio/browser`
+
+Donc sur Netlify :
+
+- **Build command**: `npm run build`
+- **Publish directory**: `dist/portfolio/browser`
+
+Le fichier `netlify.toml` à la racine force ces valeurs.
+
 ### 1) Déployer le backend Django
 - Déployer le dossier `api-django/` sur une plateforme Python.
 - Configurer les variables d’environnement: `SECRET_KEY`, `DEBUG=False`, `ALLOWED_HOSTS`, `CORS_ALLOWED_ORIGINS`, `EMAIL_*`.
