@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { PortfolioStoreService } from '../../../shared/service/PortfolioStoreService';
 
 @Component({
   selector: 'app-portfolio',
@@ -7,5 +8,10 @@ import { Component } from '@angular/core';
   styleUrl: './portfolio.scss',
 })
 export class Portfolio {
+  private store = inject(PortfolioStoreService);
+  projects = this.store.projects;
 
+  constructor() {
+    this.store.load();
+  }
 }

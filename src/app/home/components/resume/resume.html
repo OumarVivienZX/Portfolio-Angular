@@ -49,31 +49,31 @@
           </ul>
         </div>
 
-        <!-- EXPERIENCE -->
+        <!-- EXPERIENCE (dynamique depuis l'API Django) -->
         <div class="col-lg-6">
           <h3 class="mb-4">Experience</h3>
           <ul class="list-inline resume-list">
-
-            <li>
-              <h4 class="mb-2">Web Developer (Django & Python)</h4>
-              <span class="time">2023 - Present</span>
-              <p class="my-2">
-                Strong experience in developing responsive, secure, and scalable
-                web applications using Django and Python. Experience includes
-                e-commerce platforms, management systems, REST APIs,
-                authentication, and database integration.
-              </p>
-            </li>
-
-            <li>
-              <h4 class="mb-2">Digital & Graphic Design</h4>
-              <span class="time">2022 - Present</span>
-              <p class="my-2">
-                Experience in digital creation and visual design using Photoshop,
-                including UI mockups, banners, social media visuals,
-                and user-centered graphic content.
-              </p>
-            </li>
+            @for (e of experiences(); track e.id) {
+              <li>
+                <h4 class="mb-2">
+                  {{ e.role }}
+                  @if (e.nom_entreprise) { <span>({{ e.nom_entreprise }})</span> }
+                </h4>
+                <span class="time">
+                  {{ e.date_debut }} - {{ e.date_fin || 'Present' }}
+                </span>
+                @if (e.type_de_contrat) {
+                  <p class="my-2"><strong>{{ e.type_de_contrat }}</strong></p>
+                }
+                @if (e.description) {
+                  <p class="my-2">{{ e.description }}</p>
+                }
+              </li>
+            } @empty {
+              <li>
+                <p class="m-0 text-muted">Aucune expérience enregistrée pour le moment.</p>
+              </li>
+            }
 
           </ul>
         </div>

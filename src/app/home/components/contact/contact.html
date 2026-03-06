@@ -23,7 +23,13 @@
             </div>
             <div class="contact-details mt-2">
               <h5>Email Us</h5>
-              <p><a href="mailto:kevinmiller@alb.com">koumarvivien@gmail.com</a></p>
+              <p>
+                @if (user()?.email) {
+                  <a [href]="'mailto:' + user()!.email">{{ user()!.email }}</a>
+                } @else {
+                  <span class="text-muted">Email non renseigné</span>
+                }
+              </p>
             </div>
           </div>
         </div>
@@ -34,7 +40,13 @@
             </div>
             <div class="contact-details mt-2">
               <h5>Call</h5>
-              <p><a href="tel:+1000123456789">+225 07 57 47 78 90</a></p>
+              <p>
+                @if (user()?.telephone) {
+                  <a [href]="'tel:' + user()!.telephone">{{ user()!.telephone }}</a>
+                } @else {
+                  <span class="text-muted">Téléphone non renseigné</span>
+                }
+              </p>
             </div>
           </div>
         </div>
@@ -45,7 +57,14 @@
             </div>
             <div class="contact-details mt-2">
               <h5>Visit</h5>
-              <p>Grand Bassam, Côte d'Ivoire</p>
+              <p>
+                @if (locations().length > 0) {
+                  {{ locations()[0].ville }}, {{ locations()[0].pays }}
+                  @if (locations()[0].quartier) { <span>({{ locations()[0].quartier }})</span> }
+                } @else {
+                  <span class="text-muted">Localisation non renseignée</span>
+                }
+              </p>
             </div>
           </div>
         </div>

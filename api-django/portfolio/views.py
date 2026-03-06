@@ -11,13 +11,13 @@ def api_home(request):
         "message": "Bienvenue sur l'API Portfolio",
         "version": "1.0",
         "endpoints": {
-            "utilisateurs": "/api/utilisateurs/",
-            "projets": "/api/projets/",
-            "experiences": "/api/experiences/",
-            "services": "/api/services/",
-            "prises_de_contact": "/api/prises-de-contact/",
-            "reseaux_sociaux": "/api/reseaux-sociaux/",
-            "localisations": "/api/localisations/",
+            "utilisateurs": "/api/Utilisateur/",
+            "projets": "/api/Projet/",
+            "experiences": "/api/Experience/",
+            "services": "/api/Service/",
+            "prises_de_contact": "/api/PriseDeContact/",
+            "reseaux_sociaux": "/api/ReseauSocial/",
+            "localisations": "/api/Localisation/",
             "admin": "/admin/"
         }
     })

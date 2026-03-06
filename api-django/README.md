@@ -60,6 +60,9 @@ L'API est disponible sur **`http://localhost:8000/api/`**
 
 Admin panel : **`http://localhost:8000/admin/`**
 
+> Note frontend: `ng serve` peut démarrer sur un port différent de 4200 si ce port est occupé.
+> Le backend est configuré pour autoriser `http://localhost:<port>` en dev (CORS).
+
 ---
 
 ## 📁 Structure
@@ -187,6 +190,17 @@ python manage.py test
 - [ ] Base de données : PostgreSQL ou MySQL
 - [ ] Certificat SSL/HTTPS
 - [ ] Variables d'environnement sécurisées
+
+### Déploiement avec un frontend Netlify
+
+Si le frontend Angular est déployé sur Netlify, tu dois :
+- Déployer l’API Django sur un domaine public (Render / Railway / Fly.io / VPS, etc.)
+- Mettre `CORS_ALLOWED_ORIGINS` sur l’URL Netlify (ex: `https://mon-portfolio.netlify.app`)
+- (Optionnel) Garder `CORS_ALLOWED_ORIGIN_REGEXES` seulement en dev (localhost).
+- Garder `POST /api/PriseDeContact/` ouvert (anonyme) pour le formulaire de contact
+- Configurer SMTP (`EMAIL_HOST_*`) pour recevoir les messages
+
+Dans Angular (prod), configure `apiUrl` sur `https://<ton-backend>/api/`.
 
 ### Exemple de déploiement (Heroku, PythonAnywhere, etc.)
 1. Créer un `.env` avec SECRET_KEY unique

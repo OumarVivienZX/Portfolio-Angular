@@ -19,82 +19,40 @@
 
     <div class="section-content flex-grow-1">
       <div class="row portfolio-items">
-
-        <!-- E-commerce Django -->
-        <div class="col-xl-4 col-lg-4 col-md-6 mb-2 mt-4 backenddevelopment">
-          <div class="portfolio-item">
-            <a href="assets/images/Ecommerce.png" class="portfolio-single portfolio-image">
-              <div class="item-box">
-                <div class="item-image">
-                  <img src="assets/images/Ecommerce.png"
-                       class="portfolio-img"
-                       alt="E-commerce Django"
-                       (error)="$any($event.target).src='assets/images/Ecommerce.png'">
-                </div>
-                <div class="item-details d-flex align-items-center">
-                  <div class="item-details-ins text-center w-100">
-                    <div class="mb-2">
-                      <span class="mbri-cart-full"></span>
+        @for (p of projects(); track p.id) {
+          <div class="col-xl-4 col-lg-4 col-md-6 mb-2 mt-4">
+            <div class="portfolio-item">
+              <a [href]="p.lien || '#'" class="portfolio-single portfolio-image" target="_blank" rel="noopener noreferrer">
+                <div class="item-box">
+                  <div class="item-image">
+                    <img
+                      [src]="p.image || 'assets/images/Ecommerce.png'"
+                      class="portfolio-img"
+                      [alt]="p.resume"
+                      (error)="$any($event.target).src='assets/images/Ecommerce.png'">
+                  </div>
+                  <div class="item-details d-flex align-items-center">
+                    <div class="item-details-ins text-center w-100">
+                      <div class="mb-2">
+                        <span class="mbri-briefcase"></span>
+                      </div>
+                      <h3>{{ p.resume }}</h3>
+                      @if (p.lien) {
+                        <p class="m-0">Voir le projet</p>
+                      } @else {
+                        <p class="m-0 text-muted">Lien non renseigné</p>
+                      }
                     </div>
-                    <h3>E-commerce Website for Otaku's</h3>
-                    <p>Django · PostgreSQL</p>
                   </div>
                 </div>
-              </div>
-            </a>
+              </a>
+            </div>
           </div>
-        </div>
-
-        <!-- App gestion cantine -->
-        <div class="col-xl-4 col-lg-4 col-md-6 mb-2 mt-4 frontenddevelopment">
-          <div class="portfolio-item">
-            <a href="assets/images/cantine.png" class="portfolio-single portfolio-image">
-              <div class="item-box">
-                <div class="item-image">
-                  <img src="assets/images/cantine.png"
-                       class="portfolio-img"
-                       alt="Canteen Management App"
-                       (error)="$any($event.target).src='assets/images/cantine.png'">
-                </div>
-                <div class="item-details d-flex align-items-center">
-                  <div class="item-details-ins text-center w-100">
-                    <div class="mb-2">
-                      <span class="mbri-tablet"></span>
-                    </div>
-                    <h3>Canteen Management App</h3>
-                    <p>Flutter · Django REST API</p>
-                  </div>
-                </div>
-              </div>
-            </a>
+        } @empty {
+          <div class="col-12 mt-4">
+            <p class="text-center m-0 text-muted">Aucun projet à afficher pour le moment.</p>
           </div>
-        </div>
-
-        <!-- Covoiturage -->
-        <div class="col-xl-4 col-lg-4 col-md-6 mb-2 mt-4 backenddevelopment">
-          <div class="portfolio-item">
-            <a href="assets/images/carpooling.png" class="portfolio-single portfolio-image">
-              <div class="item-box">
-                <div class="item-image">
-                  <img src="assets/images/carpooling.png"
-                       class="portfolio-img"
-                       alt="Carpooling Platform"
-                       (error)="$any($event.target).src='assets/images/carpooling.png'">
-                </div>
-                <div class="item-details d-flex align-items-center">
-                  <div class="item-details-ins text-center w-100">
-                    <div class="mb-2">
-                      <span class="mbri-car"></span>
-                    </div>
-                    <h3>Carpooling Platform</h3>
-                    <p>Django · Web Application</p>
-                  </div>
-                </div>
-              </div>
-            </a>
-          </div>
-        </div>
-
+        }
       </div>
 
       <div class="row">

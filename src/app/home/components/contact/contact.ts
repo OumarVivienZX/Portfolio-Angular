@@ -2,6 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ContactService } from '../../../shared/service/ContactService';
 import { IContact } from '../../../shared/models';
+import { PortfolioStoreService } from '../../../shared/service/PortfolioStoreService';
 
 @Component({
   selector: 'app-contact',
@@ -11,6 +12,9 @@ import { IContact } from '../../../shared/models';
 })
 export class Contact {
   private contactService = inject(ContactService);
+  private store = inject(PortfolioStoreService);
+  user = this.store.user;
+  locations = this.store.locations;
 
   /** ID utilisateur du portfolio (à adapter si multi-utilisateurs) */
   private readonly userId = 1;
@@ -23,6 +27,10 @@ export class Contact {
   email = '';
   objet = '';
   message = '';
+
+  constructor() {
+    this.store.load();
+  }
 
   onSubmit(): void {
     this.error.set(null);

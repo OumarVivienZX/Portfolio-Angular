@@ -4,5 +4,10 @@
  */
 export const environment = {
   production: true,
-  apiUrl: '/api/'  // même origine en prod si Angular et Django sont servis ensemble
+  /**
+   * En déploiement séparé (Netlify pour Angular + backend ailleurs),
+   * renseigner ici l'URL publique du backend Django.
+   * Exemple: https://portfolio-api.onrender.com/api/
+   */
+  apiUrl: 'https://CHANGE_ME_BACKEND_DOMAIN/api/'
 };

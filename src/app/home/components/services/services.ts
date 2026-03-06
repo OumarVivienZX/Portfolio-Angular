@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { OfferService } from '../../../shared/service/OfferService';
+import { PortfolioStoreService } from '../../../shared/service/PortfolioStoreService';
 @Component({
   selector: 'app-services',
   imports: [],
@@ -7,6 +7,10 @@ import { OfferService } from '../../../shared/service/OfferService';
   styleUrl: './services.scss',
 })
 export class Services {
-  private offerService = inject(OfferService);
+  private store = inject(PortfolioStoreService);
+  services = this.store.services;
 
+  constructor() {
+    this.store.load();
+  }
 }

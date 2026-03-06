@@ -19,93 +19,24 @@
 
     <div class="section-content flex-grow-1">
       <div class="row">
-
-        <!-- Backend -->
-        <div class="col-lg-4 col-md-6 mt-4 mb-2 d-flex">
-          <div class="service-single text-left p-5 h-100 d-flex flex-column">
-            <div class="service-icon">
-              <span class="mbri-database"></span>
+        @for (s of services(); track s.id) {
+          <div class="col-lg-4 col-md-6 mt-4 mb-2 d-flex">
+            <div class="service-single text-left p-5 h-100 d-flex flex-column">
+              <div class="service-icon">
+                <span class="mbri-briefcase"></span>
+              </div>
+              <h3 class="my-3">{{ s.type_de_service }}</h3>
+              <p class="flex-grow-1">{{ s.details }}</p>
+              @if (s.outils) {
+                <small class="text-muted">Outils: {{ s.outils }}</small>
+              }
             </div>
-            <h3 class="my-3">Backend Development</h3>
-            <p class="flex-grow-1">
-              Robust web applications using Django & Django REST Framework,
-              secure authentication, and relational databases
-              (PostgreSQL, MySQL).
-            </p>
           </div>
-        </div>
-
-        <!-- Mobile -->
-        <div class="col-lg-4 col-md-6 mt-4 mb-2 d-flex">
-          <div class="service-single text-left p-5 h-100 d-flex flex-column">
-            <div class="service-icon">
-              <span class="mbri-tablet"></span>
-            </div>
-            <h3 class="my-3">Mobile Applications</h3>
-            <p class="flex-grow-1">
-              Cross-platform mobile apps with Flutter & Dart,
-              API integration, Firebase services,
-              and deployment on Android & iOS.
-            </p>
+        } @empty {
+          <div class="col-12 mt-4">
+            <p class="text-center m-0 text-muted">Aucun service à afficher pour le moment.</p>
           </div>
-        </div>
-
-        <!-- Frontend -->
-        <div class="col-lg-4 col-md-6 mt-4 mb-2 d-flex">
-          <div class="service-single text-left p-5 h-100 d-flex flex-column">
-            <div class="service-icon">
-              <span class="mbri-layers"></span>
-            </div>
-            <h3 class="my-3">Frontend & UI Development</h3>
-            <p class="flex-grow-1">
-              Modern, responsive interfaces using HTML, CSS, JavaScript,
-              Bootstrap, Tailwind, React.js and Vue.js.
-            </p>
-          </div>
-        </div>
-
-        <!-- API & Security -->
-        <div class="col-lg-4 col-md-6 mt-4 mb-2 d-flex">
-          <div class="service-single text-left p-5 h-100 d-flex flex-column">
-            <div class="service-icon">
-              <span class="mbri-lock"></span>
-            </div>
-            <h3 class="my-3">API & Security</h3>
-            <p class="flex-grow-1">
-              REST & GraphQL APIs, JWT & OAuth2 authentication,
-              API documentation with Swagger / OpenAPI.
-            </p>
-          </div>
-        </div>
-
-        <!-- DevOps -->
-        <div class="col-lg-4 col-md-6 mt-4 mb-2 d-flex">
-          <div class="service-single text-left p-5 h-100 d-flex flex-column">
-            <div class="service-icon">
-              <span class="mbri-rocket"></span>
-            </div>
-            <h3 class="my-3">DevOps & Tools</h3>
-            <p class="flex-grow-1">
-              Version control with Git & GitHub/GitLab,
-              containerization using Docker & Docker Compose.
-            </p>
-          </div>
-        </div>
-
-        <!-- Design -->
-        <div class="col-lg-4 col-md-6 mt-4 mb-2 d-flex">
-          <div class="service-single text-left p-5 h-100 d-flex flex-column">
-            <div class="service-icon">
-              <span class="mbri-hot-cup"></span>
-            </div>
-            <h3 class="my-3">Graphic & UI Design</h3>
-            <p class="flex-grow-1">
-              Visual design and interface mockups created with Photoshop,
-              focusing on clean, modern and user-centered design.
-            </p>
-          </div>
-        </div>
-
+        }
       </div>
     </div>
 

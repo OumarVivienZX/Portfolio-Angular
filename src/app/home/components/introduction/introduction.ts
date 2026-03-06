@@ -1,7 +1,5 @@
-import { Component, inject, signal } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { IUser } from '../../../shared/models';
-import { UserService } from '../../../shared/service/UserService';
+import { Component, inject } from '@angular/core';
+import { PortfolioStoreService } from '../../../shared/service/PortfolioStoreService';
 
 @Component({
   selector: 'app-introduction',
@@ -10,17 +8,10 @@ import { UserService } from '../../../shared/service/UserService';
   styleUrl: './introduction.scss',
 })
 export class Introduction {
-  user = signal<IUser | null>(null);
-  private userService = inject(UserService);
+  private store = inject(PortfolioStoreService);
+  user = this.store.user;
 
   constructor() {
-    // ID utilisateur fixe pour le portfolio
-    this.userService
-      .getUserById(1)
-      .pipe(takeUntilDestroyed())
-      .subscribe({
-        next: (u) => this.user.set(u),
-        error: () => this.user.set(null)
-      });
+    this.store.load();
   }
 } 
