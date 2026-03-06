@@ -18,54 +18,17 @@ def sync_portfolio_with_admin_choices(apps, schema_editor):
         return
 
     # --- EXPERIENCES ---
-    # 1) Bachelor’s Degree in Software Engineering – Ivorian Institute of Technology
-    exp_bachelor, _ = Experience.objects.get_or_create(
-        utilisateur=user,
-        role="Bachelor’s Degree in Software Engineering",
-        nom_entreprise="Ivorian Institute of Technology",
-        defaults={
-            "date_debut": timezone.datetime(2023, 1, 1).date(),
-            "date_fin": timezone.datetime(2026, 7, 15).date(),
-            "type_de_contrat": "Education",
-            "description": (
-                "Bachelor’s degree in Software Engineering at the Ivorian Institute of Technology, "
-                "with a strong focus on web development, databases and software architecture."
-            ),
-        },
-    )
-    exp_bachelor.date_debut = timezone.datetime(2023, 1, 1).date()
-    exp_bachelor.date_fin = timezone.datetime(2026, 7, 15).date()
-    exp_bachelor.type_de_contrat = "Education"
-    exp_bachelor.save()
+    # On garde dans Experience uniquement les expériences PRO.
+    # L'éducation (Bachelor, Python Certification) reste affichée en dur dans le HTML.
 
-    # 2) Python Certification (In Progress) – Professional training
-    exp_python, _ = Experience.objects.get_or_create(
-        utilisateur=user,
-        role="Python Certification (In Progress)",
-        nom_entreprise="Professional training",
-        defaults={
-            "date_debut": timezone.datetime(2023, 6, 1).date(),
-            "date_fin": None,
-            "type_de_contrat": "Certification",
-            "description": (
-                "Ongoing professional Python certification focused on backend development, "
-                "object-oriented programming, the Django framework and REST API development."
-            ),
-        },
-    )
-    exp_python.date_debut = timezone.datetime(2023, 6, 1).date()
-    exp_python.date_fin = None
-    exp_python.type_de_contrat = "Certification"
-    exp_python.save()
-
-    # 3) Web Developer & Graphic Designer – IFLYSIM
+    # Web Developer & Graphic Designer – IFLYSIM
     exp_iflysim, _ = Experience.objects.get_or_create(
         utilisateur=user,
         role="Web Developer & Graphic Designer",
         nom_entreprise="IFLYSIM",
         defaults={
             "date_debut": timezone.datetime(2025, 6, 15).date(),
-            "date_fin": None,
+            "date_fin": timezone.datetime(2025, 9, 31).date(),
             "type_de_contrat": "Web development",
             "description": (
                 "Worked as a web developer at IFLYSIM, building web pages and creating "

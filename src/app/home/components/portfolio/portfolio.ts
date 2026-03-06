@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { PortfolioStoreService } from '../../../shared/service/PortfolioStoreService';
+import { IProject } from '../../../shared/models';
 
 @Component({
   selector: 'app-portfolio',
@@ -13,5 +14,20 @@ export class Portfolio {
 
   constructor() {
     this.store.load();
+  }
+
+  getProjectImage(p: IProject): string {
+    const title = (p.resume || '').toLowerCase();
+
+    if (title.includes('cafeteria')) {
+      return 'assets/images/cantine.png';
+    }
+
+    if (title.includes('carpooling')) {
+      return 'assets/images/carpooling.png';
+    }
+
+    // Par défaut : projet e-commerce
+    return 'assets/images/Ecommerce.png';
   }
 }
