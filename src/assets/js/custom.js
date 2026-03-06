@@ -80,14 +80,14 @@ $(window).on("load", function(){
     });
 
     //Typed JS
-
-    var typed = new Typed('.welcome-text-type', {
-        strings: $('.welcome-text-type').data('options').split(","),
-        typeSpeed: 90,
-        backDelay: 2000,
-        backSpeed: 40,
-        loop: true
-    });
+    // Désactivé - géré par le composant Angular Introduction
+    // var typed = new Typed('.welcome-text-type', {
+    //     strings: $('.welcome-text-type').data('options').split(","),
+    //     typeSpeed: 90,
+    //     backDelay: 2000,
+    //     backSpeed: 40,
+    //     loop: true
+    // });
 
     //Counter
 

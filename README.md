@@ -54,6 +54,41 @@ ng e2e
 
 Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
 
+## Consommation de l'API Django
+
+Le frontend interagit avec une API Django située dans le dossier `api-django`.
+La constante `API_URL` se trouve dans `src/app/shared/config.ts` et pointe par défaut vers :
+
+```ts
+export const API_URL = 'http://localhost:8000/api/';
+```
+
+Les services du dossier `src/app/shared/service` offrent des méthodes retournant des
+`Observable` typés pour récupérer les données du backend (utilisateur, projets,
+expériences, etc.) et envoyer des formulaires de contact.
+
+### Étapes pour démarrer le backend
+
+1. Aller dans `api-django` :
+   ```bash
+   cd api-django
+   python -m venv .venv   # optionnel
+   pip install -r requirements.txt
+   python manage.py migrate
+   python manage.py runserver
+   ```
+2. L'API sera disponible sur `http://localhost:8000/api/`.
+
+### Frontend
+
+1. Démarrer l'application Angular :
+   ```bash
+   npm install
+   npm run start
+   ```
+2. Le composant `Introduction` montre un exemple d'appel à `UserService.getUserById(1)`
+et met à jour l'interface via une `signal`.
+
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.

@@ -23,7 +23,7 @@
             </div>
             <div class="contact-details mt-2">
               <h5>Email Us</h5>
-              <p><a href="mailto:kevinmiller@alb.com">kevinmiller@alb.com</a></p>
+              <p><a href="mailto:kevinmiller@alb.com">koumarvivien@gmail.com</a></p>
             </div>
           </div>
         </div>
@@ -34,7 +34,7 @@
             </div>
             <div class="contact-details mt-2">
               <h5>Call</h5>
-              <p><a href="tel:+1000123456789">+1 xxx-888-7887</a></p>
+              <p><a href="tel:+1000123456789">+225 07 57 47 78 90</a></p>
             </div>
           </div>
         </div>
@@ -45,7 +45,7 @@
             </div>
             <div class="contact-details mt-2">
               <h5>Visit</h5>
-              <p>New York, USA</p>
+              <p>Grand Bassam, Côte d'Ivoire</p>
             </div>
           </div>
         </div>
@@ -54,36 +54,46 @@
 
       <div class="row mt-5">
         <div class="col-lg-12">
-          <form action="php/form.php" method="post" id="contact-form">
+          @if (messageSent()) {
+            <div class="alert alert-success" role="alert">
+              Message envoyé avec succès. Merci de votre contact !
+            </div>
+          }
+          @if (error()) {
+            <div class="alert alert-danger" role="alert">
+              {{ error() }}
+            </div>
+          }
+          <form (ngSubmit)="onSubmit()" #contactForm="ngForm" id="contact-form">
             <div class="row">
               <div class="col-lg-6 mt-3">
                 <div class="form-group">
-                  <input type="text" name="name" id="name" class="form-control" autocomplete="off" required>
+                  <input type="text" [(ngModel)]="nom" name="name" id="name" class="form-control" autocomplete="off" required>
                   <label>Full Name</label>
                 </div>
               </div>
               <div class="col-lg-6 mt-3">
                 <div class="form-group">
-                  <input type="email" name="email" id="email" class="form-control" autocomplete="off" required>
+                  <input type="email" [(ngModel)]="email" name="email" id="email" class="form-control" autocomplete="off" required>
                   <label>Email</label>
                 </div>
               </div>
               <div class="col-lg-12 mt-3">
                 <div class="form-group">
-                  <input type="text" name="subject" id="subject" class="form-control" autocomplete="off" required>
+                  <input type="text" [(ngModel)]="objet" name="subject" id="subject" class="form-control" autocomplete="off" required>
                   <label>Subject</label>
                 </div>
               </div>
               <div class="col-lg-12 mt-3">
                 <div class="form-group">
-                  <textarea name="text" id="text"  rows="6" class="form-control" required></textarea>
+                  <textarea [(ngModel)]="message" name="text" id="text" rows="6" class="form-control" required></textarea>
                   <label>Message</label>
                 </div>
               </div>
               <div class="col-lg-12 mt-3">
                 <div class="form-group mb-0 text-right">
-                  <button type="submit" id="contact-btn" class="btn btn-outline-primary btn-bg">
-                    Send Message
+                  <button type="submit" id="contact-btn" class="btn btn-outline-primary btn-bg" [disabled]="sending()">
+                    {{ sending() ? 'Envoi...' : 'Send Message' }}
                   </button>
                 </div>
               </div>

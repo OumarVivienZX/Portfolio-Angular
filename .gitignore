@@ -41,3 +41,6 @@ __screenshots__/
 # System files
 .DS_Store
 Thumbs.db
+
+# Django : secrets (ne jamais commiter)
+api-django/.env

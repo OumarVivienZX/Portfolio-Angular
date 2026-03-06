@@ -9,10 +9,16 @@
   <!--End Background Image-->
 
   <div class="container introduction text-left" >
-    <p class="welcome_text mb-4" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="150">I'm a <span class="welcome-text-type" data-options="Web Developer, Graphic Designer" ></span></p>
+    <p class="welcome_text mb-4" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="150">
+      @if (user()) {
+        I'm a <span class="welcome-text-type">{{ user()!.description }}</span>
+      } @else {
+        I'm a <span class="welcome-text-type">Loading...</span>
+      }
+    </p>
     <div id="parallax-scene" class="mb-4" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="300">
       <div class="heading-zone">
-        <h1>Kevin Miller</h1>
+        <h1>{{ user() ? user()!.nom + ' ' + user()!.prenom : '...' }}</h1>
       </div>
     </div>
     <div data-aos="fade-up" data-aos-duration="1200" data-aos-delay="450">
